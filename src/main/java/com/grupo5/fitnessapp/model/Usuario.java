@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -22,25 +23,25 @@ public class Usuario {
 	@Size(min = 5, max = 100, message = "O atributo nome deve conter no mínimo 05 e no máximo 100 caracteres.")
 	private String nome;
 	
-	@NotBlank(message = "O atributo idade é obrigatório!")
+	@NotNull(message = "O atributo idade é obrigatório!")
 	private Long idade;
 	
-	@NotBlank(message = "O atributo altura é obrigatório!")
+	@NotNull(message = "O atributo altura é obrigatório!")
 	private BigDecimal altura;
 	
-	@NotBlank(message = "O atributo peso é obrigatório!")
+	@NotNull(message = "O atributo peso é obrigatório!")
 	private BigDecimal peso;
 	
 	@NotBlank(message = "O atributo gênero é obrigatório!")
-	@Size(min = 8, max = 20, message = "O atributo gênero deve conter no mínimo 05 e no máximo 20 caracteres.")
+	@Size(min = 1, max = 20, message = "O atributo gênero deve conter no mínimo 05 e no máximo 20 caracteres.")
 	private String genero;
 
 	@NotBlank(message = "O atributo Nível de Atividade é obrigatório!")
-	@Size(min = 10, max = 30, message = "O atributo Nível de Atividade deve conter no mínimo 10 e no máximo 30 caracteres.")
+	@Size(min = 1, max = 30, message = "O atributo Nível de Atividade deve conter no mínimo 10 e no máximo 30 caracteres.")
 	private String nivelAtividade;
 	
 	@NotBlank(message = "O atributo email é obrigatório!")
-	@Size(min = 10, max = 50, message = "O atributo email deve conter no mínimo 10 e no máximo 50 caracteres.")
+	@Size(min = 1, max = 50, message = "O atributo email deve conter no mínimo 10 e no máximo 50 caracteres.")
 	private String email;
 
 	public Long getId() {
