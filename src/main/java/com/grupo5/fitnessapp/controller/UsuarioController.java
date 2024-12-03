@@ -1,18 +1,22 @@
 package com.grupo5.fitnessapp.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.grupo5.fitnessapp.model.Usuario;
 import com.grupo5.fitnessapp.repository.UsuarioRepository;
@@ -44,7 +48,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<Usuario>> getByTitulo(@PathVariable String nome){
+	public ResponseEntity<List<Usuario>> getByNome(@PathVariable String nome){
 		return ResponseEntity.ok(usuarioRepository.findAllByNomeContainingIgnoreCase(nome));
 	}
 	
@@ -63,7 +67,16 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
-	
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@DeleteMapping("/{id}")
+	public void delete (@PathVariable Long id) {
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		
+		if(usuario.isEmpty())
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+			
+			usuarioRepository.deleteById(id);
+ 	}
 
 }
 
