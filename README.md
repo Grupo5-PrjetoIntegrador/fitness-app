@@ -4,7 +4,7 @@ Modelo de Negócio: Aplicativo de Fitness Personalizado
 
 Descrição: Aplicativo para monitoramento do progresso da prática esportiva do usuário.
 
-Entidade e atributos: Temos a entidade Usuário com os atributos id, nome, idade, altura, peso. gênero, nível de atividade e email.
+Entidade e atributos: Temos a entidade Usuário com os atributos id, nome, idade, altura, peso, gênero, nível de atividade e email.
 
 Principais Funcionalidades: Temos os métodos de manipulação geAll, getById, getByNome, post, put e delete.
 
